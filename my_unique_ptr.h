@@ -11,11 +11,11 @@ public:
 
     my_unique_ptr(const my_unique_ptr& other)=delete;
     my_unique_ptr& operator=(const my_unique_ptr& other)=delete;
-
-
+    
     my_unique_ptr(my_unique_ptr&& other): ptr(other.ptr){
             other.ptr=nullptr;
     }
+    
     my_unique_ptr& operator=(my_unique_ptr&& other){
         if(this!=&other){
             delete ptr;
@@ -28,7 +28,6 @@ public:
     ~my_unique_ptr(){
         delete ptr;
     }
-
     T& operator*(){
         return *ptr;
     }
@@ -41,11 +40,9 @@ public:
     T const* operator->() const{
         return ptr;
     }
-
-
-
+    operator bool() const{
+        return ptr!=nullptr;
+    }
 };
-
-
 
 #endif //MY_UNIQUE_PTR_H
